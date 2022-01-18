@@ -5,3 +5,5 @@ In this repo, I will be following along with the ["Intro to CodeCast"](https://w
 Each lesson will be in its own file, with my own personal notes within in.
 
 *Note: This repo is not for learning purposes but for my own personal notes and to follow along with my journey.
+
+Link to my exercism account to view my solutions (try yours first): <https://exercism.org/profiles/amyoulton>
