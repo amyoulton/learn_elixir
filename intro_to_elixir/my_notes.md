@@ -42,3 +42,25 @@ name1 = name;
 name = "John";
 console.log(name1); // "Tam"
 ```
+
+## Lesson 3 | On Functions
+
+### Tam's Notes
+
+Elixir is a compiled language. Files get compiled before you can run them.
+
+Elixir file --> BEAM --> Run the Beam on Erlang VM
+
+You will see two types of files primarily in Elixir `.ex` which gets compiled, `.exs` doesn't get compiled. 
+
+Elixir can run files without compiling them which serves a good purpose for things like writing tests that you don't need to be compiled.
+
+**Interactive Elixir**
+
+You can start a program `iex` which is interactive Elixir to execute Elixir code on the fly. It doesn't auto access all the files i your project. You have to compile it.
+
+Within Interactive Elixir (iex) you can "bring" a module by compiling its file using code like:
+
+```elixir
+c "./on_functions.ex"
+```
