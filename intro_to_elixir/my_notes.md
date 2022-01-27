@@ -64,3 +64,67 @@ Within Interactive Elixir (iex) you can "bring" a module by compiling its file u
 ```elixir
 c "./on_functions.ex"
 ```
+
+## Lesson 4 | Variables and Data Types (Part 1)
+
+### Variables
+
+Elixir is dynamically typed (you don't have to specify the type of variable when declaring the variable)
+
+```elixir
+a = 1
+name = "Tam"
+```
+
+Elixir follows `snake_case` convention for variable naming.
+
+You can always find more information about the particular type in Elixir using hexdocs: https://hexdocs.pm.
+
+Kernel is Elixir's default environment. You can invoke kernel functions without the use of the `Kernel.` prefix.
+
+### Integers and Floats
+
+We can define integers and floats by simply putting numbers. Floats get defined when there is a decimal to the number.
+
+```elixir
+im_an_integer = 123
+im_a_float = 123.5
+```
+
+You can make use the Elixir built in Integer and Float modules to get access to handy functions:
+https://hexdocs.pm/elixir/1.12/Integer.html
+
+### Strings
+
+You can define strings using `"`.
+
+When you use single quotes, `'` in Elixir, you're actually defining a character list. 
+
+Practically speaking, you almost always deal with strings using `"`.
+
+Strings are stored as binary. A binary is a series of bits that is divisible by 8.
+
+To concatenate two strings together we use `<>`. 
+
+To interpolate two strings we us `#{}` syntax as such:
+
+```elixir
+greeting = "hello"
+"#{greeting}, World!"
+```
+
+### Tuples
+
+Fixed-size collection of values. You can define tuples using `{}`. 
+
+Very similar to arrays in other languages. They are fixed sized, and are usually stored in a continous block in memory. They're usually used for very small sets of data, ie. 2-3 elements.
+
+For instance, they are widely used when we need to return more than a single element from a function.
+
+```elixir
+defmodule MyModule do
+  def my_function do
+    {1, 2}
+  end
+end
+```
