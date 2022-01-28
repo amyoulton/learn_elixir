@@ -121,10 +121,44 @@ Very similar to arrays in other languages. They are fixed sized, and are usually
 
 For instance, they are widely used when we need to return more than a single element from a function.
 
+Tuples are stored in continous blocks of Data. Accessing elements in a tuple by its index is easy, but it becomes hard to store large amount of data in tuples because they have to find continous blocks to be stored.
+
 ```elixir
 defmodule MyModule do
   def my_function do
     {1, 2}
   end
 end
+```
+
+## Lesson 5 | Lists
+
+We define lists using `[]`.
+
+Lists are implemented using `Linked List` principles. 
+
+When we want to work with a large amount of data, we prefer lists to tuples.
+
+```elixir
+my_list = [1, 2, 3]
+new_list = ["a" | my_list]
+```
+
+`|` is the pipe operator. 
+
+In lists you can have different types of Data. Lists won't mutate the original list, but it won't duplicate any other included lists point in data.
+
+To concatenate two lists together, we use the `++` operator.  If possible, we prefer using the `|` operator to expand the list instaad of using `++`. It's more efficent memory wise because you're not duplicating the other lists points in data.
+
+```elixir 
+[1, 2] ++ [3, 4]
+```
+
+If possible, we prefer using the `|` to expand the list, instead of using the `++`.
+
+You can look at the built-in `List` module that contains many handy functions to work with lists. Here is an exmaple.
+
+```elixir
+my_list = [1, 2, 3]
+List.insert_at(my_list, 1, "abc")
 ```
