@@ -266,7 +266,7 @@ defmodule MyModule do
   def my_fun({a, b}) do
     IO.puts "Hello #{a} and hello #{b}"
   end
-  
+
   def my_fun(a) do
     IO.puts "Hello #{a}"
   end
@@ -280,3 +280,18 @@ defmodule MyModule do
   end
 end
 ```
+
+## Pattern Matching & Recursion
+
+Recursive function that calls itself. The most important thing when writing a rescursive function is that there must be a case where the recursion stops, otherwise you get stack overflow.
+
+Stack: last in first out data structure. Function calls are put in the stack memory.
+
+I find it easiest to split the problem into a recursive definition before writing code.
+
+`sum([1, 2, 3, 4])` can be written as 1 + `sum([2, 3, 4])` which can be written can be written as `1 + 2 + sum([2, 3])` which can be written as `1 + 2 + 3 + 4 + sum([])`. We have to define that the sum of an empty array is 0. Consequently, `1 + 2 + 3 + 4 + 0` which will return 10.
+
+Recursion is generally a great way to work with immutable data structures.
+
+In many ways, pattern matching is the preferred way to control the flow of the application.
+
