@@ -281,7 +281,7 @@ defmodule MyModule do
 end
 ```
 
-## Pattern Matching & Recursion
+## Lesson 7 | Pattern Matching & Recursion
 
 Recursive function that calls itself. The most important thing when writing a rescursive function is that there must be a case where the recursion stops, otherwise you get stack overflow.
 
@@ -294,4 +294,8 @@ I find it easiest to split the problem into a recursive definition before writin
 Recursion is generally a great way to work with immutable data structures.
 
 In many ways, pattern matching is the preferred way to control the flow of the application.
+
+## Lesson 8 | Pattern Matching w. Guards
+
+Guards are really usefully when you want to do checks for attributes you cannot do with simple pattern matching.
 
