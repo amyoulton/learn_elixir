@@ -299,3 +299,70 @@ In many ways, pattern matching is the preferred way to control the flow of the a
 
 Guards are really usefully when you want to do checks for attributes you cannot do with simple pattern matching.
 
+## Lesson 9 | Maps, Structs & Keyword Lists
+
+### Maps
+
+Maps are the primary key/value storage in Elixir.
+
+Keys in maps can be any type, most commonly atoms or strings. Values can also be anything.
+
+Here is how we define a map in Elixir:
+
+```elixir
+my_map = %{"name" => "John Smith", "age" => 15}
+my_map["age"] 
+15
+my_map["name"]
+"John Smith"
+```
+It doesn't always respect the order you entered it in. 
+
+It's most common to use atoms. Atoms are like constants. They are defined using `:` before the name of the atom. For instance, we can have `:apple` or `:ok`. They are most commonly used as return values (sually in tuples), like `{:error, "invalid input"}`.
+
+Also its very common to use atoms as keys to maps:
+
+```elixir
+my_map = %{:name => "John Smith", :age => 15}
+# which can be shortened to a syntax you may be more familar with
+my_map = %{name: "John Smith", age: 15}
+# if you do so, using atoms as keys, you have a nice syntax sugar to access values:
+IO.puts my_map.name
+IO.puts my_map.age
+```
+You can use the `Map` library that is built in with Elixir to perform functions on maps.
+### Structs
+
+If we want more control over key/value data structure, we can use Structs that enforce the prescence of certain keys. Structs are probably the closest to what you might see in an OOP language.
+
+```elixir
+defmodule Person do
+defstruct name: "", age: 15
+end
+```
+
+We can use the struct similar to how we use a map, for instance:
+
+```elixir
+j = %Person{name: "John Smith"}
+j.age 
+15
+j.name
+"John Smith"
+```
+When you're using structs it will enforce what keys you're able to assign. Defining the module that contains a struct makes what the keys strict.
+
+### Keyword Lists
+
+Are basically lists with extra features. It behaves like a key/vale data structure but it's a list at the end of the day. It's common in functional programming languages to have lists like this:
+
+```elixir
+# if you write a list in this particular format it behaves as keyvalue storage
+my_list = [{:a, 1}, {:b, 2}]
+```
+
+Key things to know know for keyword lists:
+- order matters in keyword lists -> things are stored in the order you create them at, which is not always true with maps
+- Keys are always atoms 
+- Keys can appear more than once
+
