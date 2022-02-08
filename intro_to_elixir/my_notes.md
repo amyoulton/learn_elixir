@@ -366,3 +366,51 @@ Key things to know know for keyword lists:
 - Keys are always atoms 
 - Keys can appear more than once
 
+## Lesson 10 | Enum & Anonymous Functions
+
+### Enum
+
+Enum is a built in library for Elixir. It works on enumerables. Lists, Maps, and Ranges are common data types used with Enumerables.
+
+### Anonymous Functions
+
+We have learned to define functions within modules, for example:
+
+```elixir
+defmodule HelperMethods do
+  def add_five(x) do
+    x + 5
+  end
+end
+```
+
+In some cases you need to define anonymous functions or set a function to a variable. You can do this in Elixir using this syntax:
+
+```elixir
+add_five = fn x -> x + 5 end
+```
+
+To call it, you will have to use the `.` syntax.
+
+```elixir
+# calling it like:
+add_five(15) 
+# will throw a "undefined function" error. You have to use the dot operator like:
+add_five.(15)
+```
+
+You can also simplify this by using this syntax:
+
+```elixir
+add_five_2 = &(&1 + 5)
+add_five_2.(15)
+20
+```
+Here are ways we can apply functions with Enums:
+
+```elixir
+Enum.map([1, 2, 3], fn x -> x + 5 end)
+Enum.map([1, 2, 3], &HelperMethods.add_five/1)
+Enum.map([1, 2, 3], add_five_2)
+Enum.map([1, 2, 3], &(&1 + 5))
+```
