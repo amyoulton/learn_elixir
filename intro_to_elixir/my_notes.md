@@ -2,6 +2,8 @@
 
 ## Lesson 1 | Hello, World
 
+Elixir utilizes Erlang VM (Virtual Machine).
+
 You can run files in the terminal by typing `elixir <filename>`.
 
 ## Lesson 2 | Immutability
@@ -19,8 +21,6 @@ With Elixir, you'll see a lot of functions calling other functions calling other
 JavaScript uses a single thread so mutating data is not an issue. Using mutiple threads is where the issue lies.
 
 Given the same languages, it can be a bit slower. In some cases, you'll be copying data over and over. In most cases the gain is worth it.
-
-### Tam's Notes
 
 Having immutable data structures help in easing writing multi-threaded programs.
 
@@ -44,8 +44,6 @@ console.log(name1); // "Tam"
 ```
 
 ## Lesson 3 | On Functions
-
-### Tam's Notes
 
 Elixir is a compiled language. Files get compiled before you can run them.
 
@@ -177,7 +175,7 @@ Elixir takes the `=` operator to the next level. I want you to think of a patter
 # a will be 1
 # b will be 2
 
-a = { 1, 2}
+a = {1, 2}
 #a will be {1, 2}
 ```
 
@@ -413,4 +411,50 @@ Enum.map([1, 2, 3], fn x -> x + 5 end)
 Enum.map([1, 2, 3], &HelperMethods.add_five/1)
 Enum.map([1, 2, 3], add_five_2)
 Enum.map([1, 2, 3], &(&1 + 5))
+```
+
+## Lesson 11 | The Awesome |> Operator
+
+## Enter |> 
+If you want to apply multiple functions on a value such a string, you can following mutliple approaches:
+
+Approach 1:
+```elixir
+s = "  hello "
+trimmed_s = String.trim(s)
+cap_trimmed_s = String.capitalize(trimmed_s)
+rev_trimmed_s = String.reverse(cap_trimmed_s)
+```
+
+Approach 2:
+
+```elixir
+s = "  hello "
+rev_trimmed_s = String.reverse(String.capitalize(String.trim(s)))
+```
+
+Approach 3:
+
+```elixir
+s = "  hello "
+rev_trimmed_s = s 
+                |> String.trim() 
+                |> String.capitalize() 
+                |> String.reverse()
+
+```
+
+**The return of one function should always be the input of the first arguement.**
+
+## Example 2
+
+```elixir 
+my_map = %{vancouver: 15, toronto: 25, halifax: 20}
+
+my_map |> Map.keys() |> Enum.map(fn c -> Atom.to_string(c) end)
+
+capitalized_cities = my_map 
+                     |> Map.keys() 
+                     |> Enum.map(&Atom.to_string(&1)) 
+                     |> Enum.map(&String.capitalize(&1))
 ```
