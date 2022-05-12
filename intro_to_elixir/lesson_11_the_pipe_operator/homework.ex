@@ -26,11 +26,12 @@ defmodule Formatting do
       |> Enum.join(" ")
       |> String.capitalize()
 
-    if(String.ends_with?(new_string, ".")) do
-    else
-      String.replace_suffix(new_string, "", ".")
-    end
+    ends_with(new_string, String.last(new_string))
   end
+
+  def ends_with(string, last) when last == ".", do: string
+
+  def ends_with(string, _last), do: String.replace_suffix(string, "", ".")
 
   # 3. Write a function that finds the most recurring letter in a given in a string.
 
@@ -42,7 +43,7 @@ defmodule Formatting do
       |> Enum.to_list()
       |> Enum.max_by(fn {_, x} -> x end)
 
-    {a, b} = new_string
+    {a, _b} = new_string
     a
   end
 end
