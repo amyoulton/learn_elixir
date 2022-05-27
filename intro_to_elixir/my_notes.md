@@ -458,3 +458,76 @@ capitalized_cities = my_map
                      |> Enum.map(&Atom.to_string(&1)) 
                      |> Enum.map(&String.capitalize(&1))
 ```
+
+## Lesson 16 | Using Case
+
+To use case, we pass it a value or structure of sort and then we pattern match to control the flow of our application:
+
+```elixir
+
+my_var = 1
+case my_var do
+
+2 -> "It's the number 2"
+"Hello" -> "It's the string Hello"
+1 -> "It's the number 1"
+_ -> "It's neither 1, 2 or Hello" # this is like an else statement, or a "catch all"
+end
+```
+
+We can use pattern matching in all of it's forms:
+
+```elixir
+
+my_var = 1
+case my_var do
+"hello" <> _ -> "This string starts with hello"
+_ -> "This string does not start with hello"
+end
+```
+
+You will see this pattern a lot in Elixir:
+
+```elixir
+result = {:ok, :success}
+
+{:ok, _} -> 
+  "Success!!"
+{:error, message} -> 
+  "You got an error #{message}"
+_ -> 
+  "Unrecognized result"
+
+```
+
+You can also use guards with `case`:
+
+```elixir
+number = 15
+
+case number do
+
+x when x > 10 -> "The number is big."
+y when y > 5 -> "The number is medium."
+_ -> "The number is small.
+end
+
+```
+
+You can also use case in series of |> operations:
+
+``` elixir
+
+defmodule MyModule do
+def my_fun(), do: {:ok, :success}
+end
+
+MyModule.my_fun()
+  |> case do
+  {:ok, _} -> "Operations is a success"
+  _ -> "Operations Failed"
+  end
+
+```
+
+You mostly use case for readability. Generally speaking, favour using pattern matching whenever possible.
