@@ -509,7 +509,7 @@ case number do
 
 x when x > 10 -> "The number is big."
 y when y > 5 -> "The number is medium."
-_ -> "The number is small.
+_ -> "The number is small."
 end
 
 ```
@@ -531,3 +531,28 @@ MyModule.my_fun()
 ```
 
 You mostly use case for readability. Generally speaking, favour using pattern matching whenever possible.
+
+## Lesson 17 | Using Cond
+
+Is useful when we don't want to pattern match. It's a lot more flexible than case.
+
+``` elixir
+cond do
+ 1 + 1 == 3 -> "block 1"
+ 1 + 1 == 2 -> "block 2"
+ true -> "block 3"
+
+end
+```
+
+Another example:
+
+``` elixir
+my_list = ["hello", 1, 2, nil]
+
+cond do
+Enum.count(my_list) == 3 -> "The length of the list is 3"
+List.last(my_list) == 4 -> "The last element of the list is 4"
+true -> "I don't know"
+end
+```
