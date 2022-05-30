@@ -1,4 +1,8 @@
 defmodule StarWars do
+  # import Helpers.Strings
+
+  alias Helpers.Strings
+
   @moduledoc """
   Documentation for `StarWars`.
   """
@@ -14,5 +18,9 @@ defmodule StarWars do
   """
   def hello do
     :world
+  end
+
+  def greeting(name) do
+    "Hello #{Strings.titleize(name)}"
   end
 end
