@@ -556,3 +556,89 @@ List.last(my_list) == 4 -> "The last element of the list is 4"
 true -> "I don't know"
 end
 ```
+
+## Lesson 18 | Using If and Unless
+
+We can use `if` when we want to check a single condition.
+
+```elixir
+list = [1, 2, 3]
+if Enum.count(list) == 3 do
+IO.puts "The list has three elements."
+else
+IO.puts "The list does not have three elements."
+end
+```
+
+You can use `unless` as the opposite of `if` meaning that it will excute the code in its block if the condition returns `false`.
+
+```elixir
+list = [1, 2, 3]
+unless Enum.count(list) == 3 do
+"The list does not have three elements."
+end
+```
+
+We can also use it to assign variables.
+
+```elixir
+list = [1, 2, 3, 4]
+my word = if Enum.count(list) > 3 do
+            "The list is big."
+          else 
+            "The list is small."
+          end
+
+my word = if Enum.count(list) > 3, do: "The list is big.", else: "The list is small."
+```
+
+### Variable Scoping
+
+```elixir
+list = [1, 2, 3, 4]
+x = "hello"
+if Enum.count(list) > 3 do
+  x = "The list is big."
+else 
+  x = "The list is small."
+end
+
+IO.puts x # the x will be "hello", it follows block scoping
+
+```
+
+## Lesson 19 | Enumerable Comprehension
+
+Basically using `for` to loop through enumerables.
+
+``` elixir
+list = [1, 2, 3, 4]
+
+# Using Enum
+Enum.each(list, fn x -> IO.puts x end)
+
+#Using for comprehension
+for  x <- do
+IO.puts x
+end
+```
+
+Generally speaking, favour the enum approach. It is often more readable in things like view files however, and more favourable there.
+
+`for` works with other enumerables:
+
+```elixir
+for n <- 1..100 do
+IO.puts n
+end
+```
+
+It can also work with keyword lists:
+
+```elixir
+my_kl [a: 1, b: 2, c: 3]
+
+for {x, y} <- my_kl do
+IO.puts "the first item is #{x}"
+IO.puts "the second item is #{y}"
+```
