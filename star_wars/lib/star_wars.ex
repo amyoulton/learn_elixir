@@ -1,24 +1,8 @@
 defmodule StarWars do
-  # import Helpers.Strings
-
-  alias Helpers.Strings
-
   @moduledoc """
   Documentation for `StarWars`.
   """
-
-  @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> StarWars.hello()
-      :world
-
-  """
-  def hello do
-    :world
-  end
+  alias Helpers.Strings
 
   @doc """
 
@@ -33,5 +17,27 @@ defmodule StarWars do
 
   def greeting(name) do
     "Hello #{Strings.titleize(name)}"
+  end
+
+  def fetch_person_info_by_id(id) do
+    HTTPoison.start()
+
+    "https://swapi.dev/api/people/#{id}"
+    |> HTTPoison.get!()
+    |> handle_api_res
+  end
+
+  def handle_api_res(%HTTPoison.Response{body: body, status_code: 200}) do
+    IO.puts("SUCCESS")
+    IO.puts(body)
+  end
+
+  def handle_api_res(%HTTPoison.Response{body: body, status_code: 404}) do
+    IO.puts("RESOURCE NOT FOUND")
+    IO.puts(body)
+  end
+
+  def handle_api_res(_) do
+    "Something went wrong."
   end
 end
