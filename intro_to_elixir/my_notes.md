@@ -511,7 +511,6 @@ x when x > 10 -> "The number is big."
 y when y > 5 -> "The number is medium."
 _ -> "The number is small."
 end
-
 ```
 
 You can also use case in series of |> operations:
@@ -527,7 +526,6 @@ MyModule.my_fun()
   {:ok, _} -> "Operations is a success"
   _ -> "Operations Failed"
   end
-
 ```
 
 You mostly use case for readability. Generally speaking, favour using pattern matching whenever possible.
@@ -642,3 +640,71 @@ for {x, y} <- my_kl do
 IO.puts "the first item is #{x}"
 IO.puts "the second item is #{y}"
 ```
+
+## Lesson 20 | Project Set Up
+
+To generate a new project:
+
+  mix new <project_name>
+
+This creates the project structure, with some boilerplate folders and files.
+
+The `mix.exs` file is what defines your project. This is where you add all dependencies that you're using, for example.
+
+The `.formatter.exs` is a file that can be updated to work with the `mix format` command. Essentially, it's rules that are called when the `mix format` command is run, that changes how you code is laid out depending on what you want. By default, it does things like removes extra indentations in your code.
+
+### `.ex` versus `.exs`
+
+All `.exs` files are files that do not get compiled, and get run on command. They are not part of your core compiled files, and are only used for files you want to run to accompish a particular purposes, such as scripts, tests, etc.
+
+All `.ex` files do get compiled using BEAM with your main application.
+
+Most of the code we're going to write is going to be in the `lib` directory. The tests will be written in the `tests` directory and any new dependencies we add are going to be added under the `deps` section in `mix.exs`.
+
+## Lesson 21 | Project Organization
+
+It's standard pratice to use `@moduledoc` to define what the purpose of a module is.
+
+You can load up `iex` with all of your modules and all the libraries added using this command:
+
+  iex -S mix
+
+If you make changes and you need to recompile a module in `iex`:
+
+  r <module_name>
+
+There are three main ways to get functions from modules into different files.
+
+1. Using `import`
+
+Import the entire module using the module name:
+
+  import Helper.Strings
+
+Then when you call the function from the module you can simply call the function name directly like `titelize(name).
+
+2. Calling it directly
+
+  Helpers.Strings.titelize(name)
+
+3. Using `alias`
+
+Using alias we can access the module without using its fully qualified name. It lets you use the simpliest name. A module called `Helper.Strings` can be called as such:
+
+  alias Helper.Strings
+
+And now you can call the function using `Strings.titelize(name)`.
+
+Note: aliases are frequently used to define shortcuts. Calling `alias` without an `:as` option (as seen above) sets the alias automatically to the last part of the module name.
+
+## Lesson 22 | Testing and Documentation
+
+It's a good idea to write test files to match the module name and append it with `_test`. It also needs to be an `.exs` file.
+
+Elixir macros are constructs that give you extra functionality. 
+
+Doctests do not automatically run and need to be called in the corresponding test files.
+
+## Lesson 23 | Project Dependencies & Making HTTP Requests
+
+To install dependencies, you can run `mix deps.get` after adding the dependency information into the `mix.exs` file.

@@ -5,6 +5,6 @@ defmodule Helpers.StringsTest do
   doctest Strings
 
   test "titlelizes a string" do
-    Strings.titleize("hello world") === "Hello World"
+    Strings.titleize("hello world") == "Hello World"
   end
 end
